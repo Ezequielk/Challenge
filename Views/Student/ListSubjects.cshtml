@@ -1,0 +1,35 @@
+﻿@model List<Challenge.Models.ViewModels.ListSubjectViewModelStudent>
+
+@{
+    ViewBag.Title = "List subjects";
+}
+<div class="table-responsive">
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Teacher</th>
+                <th scope="col">Starting time</th>
+                <th scope="col">Ending time</th>
+                <th scope="col">Remaining places</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var subject in Model)
+            {
+                <tr>
+                    <td>@subject.name</td>
+                    <td>@subject.teacher_name</td>
+                    <td>@subject.time_from.ToString("hh':'mm")</td>
+                    <td>@subject.time_to.ToString("hh':'mm")</td>
+                    <td>@subject.remaining_places</td>
+                    <td>
+                        @Html.ActionLink("Details", "Subject", new { id = subject.id_subject }, new { @class = "btn btn-primary" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

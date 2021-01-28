@@ -1,0 +1,53 @@
+﻿@model Challenge.Models.ViewModels.ListSubjectViewModelAdmin
+
+@{
+    List<SelectListItem> lst_items = (List<SelectListItem>)ViewBag.items;
+    ViewBag.Title = "New subject";
+}
+
+<form action="~/Admin/NewSubject" method="post">
+    <div class="form-group">
+        @Html.LabelFor(i => i.id_teacher)
+        @Html.DropDownList("id_teacher", lst_items, "Select teacher", new { @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.id_teacher, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.name)
+        @Html.TextBoxFor(i => i.name, "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.description)
+        @Html.TextAreaFor(i => i.description, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.capacity)
+        @Html.TextBoxFor(i => i.capacity, new { @type = "number", min = "0", @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.capacity, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.time_from)
+        @Html.EditorFor(i => i.time_from, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(i => i.time_from, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.time_to)
+        @Html.EditorFor(i => i.time_to, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(i => i.time_to, null, new { @class = "text-danger" })
+        @if(ViewData["Error"] != null)
+        {
+            <span class="text-danger">@Html.Raw(ViewData["Error"])</span>
+            ViewData["Error"] = null;
+        }
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Add subject</button>
+        <a href="~/Admin/ListSubjects" class="btn btn-default">Cancel</a>
+    </div>
+</form>

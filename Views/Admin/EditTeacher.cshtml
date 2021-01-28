@@ -1,0 +1,30 @@
+﻿@model Challenge.Models.ViewModels.ListTeacherViewModel
+
+@{
+    ViewBag.Title = "Edit teacher";
+}
+
+<form action="~/Admin/EditTeacher" method="post">
+    <div class="form-group">
+        @Html.LabelFor(i => i.first_name)
+        @Html.TextBoxFor(i => i.first_name, "", new { @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.first_name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(i => i.last_name)
+        @Html.TextBoxFor(i => i.last_name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(i => i.last_name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.CheckBoxFor(i => i.active)
+        @Html.LabelFor(i => i.active)
+    </div>
+
+    <div class="form-group">
+        @Html.HiddenFor(i => i.id_teacher)
+        <button type="submit" class="btn btn-warning">Edit teacher</button>
+        <a href="~/Admin/ListTeachers" class="btn btn-default">Cancel</a>
+    </div>
+</form>

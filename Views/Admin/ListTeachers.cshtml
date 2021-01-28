@@ -1,0 +1,38 @@
+﻿@model List<Challenge.Models.ViewModels.ListTeacherViewModel>
+
+@{
+    ViewBag.Title = "List teachers";
+}
+
+<div class="float-right">
+    @Html.ActionLink("New", "NewTeacher", null, new { @class = "btn btn-success" })
+</div>
+
+<div class="table-responsive">
+    <table class="table table-sm table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">First name</th>
+                <th scope="col">Last name</th>
+                <th scope="col">Active</th>
+                <th class="col-xs-2" scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var teacher in Model)
+            {
+                <tr>
+                    <td>@teacher.id_teacher</td>
+                    <td>@teacher.first_name</td>
+                    <td>@teacher.last_name</td>
+                    <td>@teacher.active</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditTeacher", new { id = teacher.id_teacher }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Delete", "DeleteTeacher", new { id = teacher.id_teacher }, new { @class = "btn btn-danger", @onclick = "return confirm('Do you really want to delete that teacher?');" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Enroll";
+}
+
+<div class="alert @ViewData["TypeMessage"]">
+    @if (ViewData["EnrollMessage"] != null)
+    {
+        @Html.Raw(ViewData["EnrollMessage"]);
+        ViewData["EnrollMessage"] = null;
+        ViewData["TypeMessage"] = null;
+    }
+</div>
+@Html.ActionLink("Return to subjects list", "ListSubjects", null, new { @class = "btn btn-primary" })

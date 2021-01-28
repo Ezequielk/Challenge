@@ -1,0 +1,29 @@
+﻿@model Challenge.Models.ViewModels.ListSubjectViewModelStudent
+
+@{
+    ViewBag.Title = "Subject";
+}
+
+
+<div class="row">
+    <p>
+        Name: @Model.name
+    </p>
+    <p>
+        Description: @Model.description
+    </p>
+    <p>
+        Teacher: @Model.teacher_name
+    </p>
+    <p>
+        Time: @Model.time_from.ToString("hh':'mm") to @Model.time_to.ToString("hh':'mm")
+    </p>
+    <p>
+        Remaining places: @Model.remaining_places
+    </p>
+    <form action="@Url.Content("~/Student/Enroll")" method="post">
+        <input type="hidden" name="id_subject" value="@Model.id_subject" />
+        <button type="submit" class="btn btn-primary">Enroll</button>
+        <a href="~/Student/ListSubjects" class="btn btn-default">Return to list</a>
+    </form>
+</div>

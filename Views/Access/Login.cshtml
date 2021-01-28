@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<form action="@Url.Content("~/Access/Login")" name="login" method="post">
+    <div class="form-group">
+        <label class="radio-inline">
+            <input class="form-check-input" type="radio" name="type_login" id="student" value="Student" onclick="clearFields(); showLogin(true, false);" checked />
+            Student
+        </label>
+        <label class="radio-inline">
+            <input class="form-check-input" type="radio" name="type_login" id="admin" value="Admin" onclick="clearFields(); showLogin(false, true);" />
+            Admin
+        </label>
+    </div>
+
+    <div class="form-group" id="student_login" style="position: fixed;">
+        <label for="DNI">DNI</label>
+        <input type="number" class="form-control" name="DNI" id="DNI" />
+        <label for="file_number">File Number</label>
+        <input type="text" class="form-control" name="file_number" id="file_number" />
+    </div>
+
+    <div class="form-group" id="admin_login" style="visibility: hidden;">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" id="username" />
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" id="password" />
+    </div>
+    
+    <div class="form-group">
+        @if (ViewData["Error"] != null)
+        {
+            <span class="text-danger">
+                @ViewData["Error"]
+            </span>
+            ViewData["Error"] = null;
+        }
+        <br />
+        <button type="submit" class="btn btn-default">Log in</button>
+    </div>
+    
+</form>
+
+<script type="text/javascript">
+
+    function showLogin(student, admin) {
+        document.getElementById("student_login").style.visibility = student ? "visible" : "hidden";
+        document.getElementById("admin_login").style.visibility = admin ? "visible" : "hidden";
+    }
+
+    function clearFields() {
+        document.forms["login"]['DNI'].value = "";
+        document.forms["login"]['file_number'].value = "";
+        document.forms["login"]['username'].value = "";
+        document.forms["login"]['password'].value = "";
+    }
+
+</script>

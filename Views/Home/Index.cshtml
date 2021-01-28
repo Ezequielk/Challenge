@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    @if (Session["User"] is Challenge.Models.Student)
+    {
+        @Html.ActionLink("List subjects", "ListSubjects", "Student", null, new { @class = "btn btn-primary btn-lg btn-block" })
+    }
+    @if (Session["User"] is Challenge.Models.Admin)
+    {
+        @Html.ActionLink("Manage subjects", "ListSubjects", "Admin", null, new { @class = "btn btn-primary btn-lg btn-block" })
+        <br />
+        @Html.ActionLink("Manage teachers", "ListTeachers", "Admin", null, new { @class = "btn btn-primary btn-lg btn-block" })
+    }
+</div>
+
+@if (TempData["Alert"] != null)
+{
+    <script type="text/javascript">
+        alert("@Html.Raw(TempData["Alert"])");
+    </script>
+    TempData["Alert"] = null;
+}
