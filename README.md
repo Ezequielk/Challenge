@@ -1,5 +1,4 @@
-# Challenge
-Challenge C#
+# Challenge C#
 
 Si al ejecutar la solución aparece el error: "No se puede encontrar una parte de la ruta de acceso '~\bin\roslyn\csc.exe'."
 
